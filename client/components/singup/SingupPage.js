@@ -1,9 +1,14 @@
 import React from 'react';
+import SingupForm from './SingupForm';
 
 class SingupPage extends React.Component {
   render() {
     return(
-        <h1>Sing up Page </h1>
+      <div className="row">
+        <div className="col-md-4 col-md-offset-4">
+          <SingupForm />  
+        </div>
+      </div>
     );
   }
 }
