@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import classnames from 'classnames';
 import validateInput from '../../../server/shared/validations/singup';
 import TextFieldGroup from '../../components/common/TextFieldGroup';
+import { browserHistory } from 'react-router';
 
 class SingupForm extends React.Component {
   constructor(props){
@@ -38,7 +39,9 @@ class SingupForm extends React.Component {
     if(this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
       this.props.userSingupRequest(this.state).then(
-        () => {},
+        () => {
+          browserHistory.push('/');
+        },
         ({ data }) => this.setState({ errors: data, isLoading: false })
       );
     }
@@ -82,7 +85,7 @@ class SingupForm extends React.Component {
           value={this.state.passwordConfirmation}
           field="passwordConfirmation"
         />
-        
+
         <div className={classnames("form-group", {'has-error': errors.timezone})}>
           <label className="control-label">Timezone</label>
           <select
@@ -108,6 +111,10 @@ class SingupForm extends React.Component {
 
 SingupForm.propTypes = {
   userSingupRequest: React.PropTypes.func.isRequired
+}
+
+SingupForm.contextType = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default SingupForm;
