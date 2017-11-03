@@ -22,7 +22,7 @@ class SingupForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    this.props.userSingupRequest(this.state);
   }
 
   render() {
@@ -92,6 +92,10 @@ class SingupForm extends React.Component {
       </form>
     );
   }
+}
+
+SingupForm.propTypes = {
+  userSingupRequest: React.PropTypes.func.isRequired
 }
 
 export default SingupForm;
